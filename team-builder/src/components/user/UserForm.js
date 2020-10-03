@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 
+// Import Dependencies
+import { gsap } from "gsap";
+
 export default function UserForm(props) {
   // Setup state that will save the data entered in the fields
   const [user, setUser] = useState({});
 
   // Function to handle the input changes
   const handleChange = (e) => {
-    // Create a new object. This object will get the data from the state and add the new data
-    const newUser = { ...user, [e.target.name]: e.target.value };
-
-    // Set the newUser as the new state
-    setUser(newUser);
+    setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   // Function to handle the form submission
@@ -54,36 +53,41 @@ export default function UserForm(props) {
   };
 
   return (
-    <div>
+    <div id="user-form">
+      <button className="close-form" onClick={props.closeForm}>
+        x
+      </button>
+
+      <h3>Form Title</h3>
+
       <form onSubmit={handleSubmission}>
-        <p>
-          <label htmlFor="user-name">Name</label>
-          <input type="text" name="name" id="user-name" placeholder="Enter Name" onChange={handleChange} />
-        </p>
+        <input
+          type="text"
+          name="name"
+          id="user-name"
+          placeholder="Enter Name"
+          className="form-field"
+          onChange={handleChange}
+        />
 
-        <p>
-          <label htmlFor="user-email">Email</label>
-          <input
-            type="email"
-            name="email"
-            id="user-email"
-            placeholder="Enter Email"
-            onChange={handleChange}
-          />
-        </p>
+        <input
+          type="email"
+          name="email"
+          id="user-email"
+          placeholder="Enter Email"
+          className="form-field"
+          onChange={handleChange}
+        />
 
-        <p>
-          <label htmlFor="user-role">Role</label>
-          <select name="role" id="user-role" onChange={handleChange}>
-            <option value="0">Choose one</option>
-            <option value="Project Manager">Project Manager</option>
-            <option value="Backend Engineer">Backend Engineer</option>
-            <option value="Frontend Engineer">Frontend Engineer</option>
-            <option value="UX/UI Designer">UX/UI Designer</option>
-          </select>
-        </p>
+        <select name="role" id="user-role" className="form-field" onChange={handleChange}>
+          <option value="0">Choose one</option>
+          <option value="Project Manager">Project Manager</option>
+          <option value="Backend Engineer">Backend Engineer</option>
+          <option value="Frontend Engineer">Frontend Engineer</option>
+          <option value="UX/UI Designer">UX/UI Designer</option>
+        </select>
 
-        <input type="submit" value="Add User" />
+        <input type="submit" value="Add User" className="button" />
       </form>
     </div>
   );

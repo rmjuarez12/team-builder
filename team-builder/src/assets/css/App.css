@@ -1,3 +1,102 @@
+/* Import fonts */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap");
+
+/* General Styles */
 body {
-  background-color: cornflowerblue;
+  background-color: #130f40;
+  font-family: "Roboto", sans-serif;
+}
+
+button,
+.button,
+a {
+  transition: 0.3s all;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+}
+
+#overlay {
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+}
+
+/* User Form styles */
+#user-form {
+  max-width: 400px;
+  margin: 0 auto;
+  background: #ebebeb;
+  padding: 20px;
+  border-radius: 10px;
+  position: fixed;
+  top: 10%;
+  color: #30336b;
+  z-index: 200;
+}
+
+#user-form h3 {
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+  border-bottom: #30336b 1px dashed;
+}
+
+#user-form p {
+  display: block;
+}
+
+#user-form .form-field {
+  width: 100%;
+  display: block;
+  background: none;
+  padding: 10px 30px;
+  margin-bottom: 15px;
+  border: #30336b 1px solid;
+  font-size: 16px;
+}
+
+#user-form select {
+  cursor: pointer;
+}
+
+#user-form .button {
+  width: 100%;
+  background: #6ab04c;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#user-form .button:hover {
+  background: #badc58;
+}
+
+.close-form {
+  border-radius: 50%;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  background: #eb4d4b;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.close-form:hover {
+  background: #ff7979;
 }

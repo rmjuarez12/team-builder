@@ -4,7 +4,12 @@ export default function UserList(props) {
   const { users } = props;
 
   return (
-    <div>
+    <div className="user-list">
+      <div id="page-title">
+        <h1>Team Member List</h1>
+        <button onClick={() => props.openForm("add-new")}>Add New</button>
+      </div>
+
       {users.map((user, index) => {
         return (
           <div className="user-card" key={index}>
