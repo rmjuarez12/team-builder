@@ -1,15 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Import Dependencies
 import { gsap } from "gsap";
 
 export default function UserForm(props) {
   // Setup state that will save the data entered in the fields
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({ name: "", email: "", role: "0" });
+
+  console.log("user", user);
+
+  // Set a useEffect so, if we are editing a user, it sets the user to that data
+  useEffect(() => {
+    if (props.memberToEdit !== null) {
+      setUser(props.memberToEdit);
+    } else {
+      resetForm();
+    }
+  }, [props.memberToEdit]);
 
   // Function to handle the input changes
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  // Function to reset form
+  const resetForm = () => {
+    setUser({ name: "", email: "", role: "0" });
   };
 
   // Function to handle the form submission
@@ -26,8 +42,20 @@ export default function UserForm(props) {
       return;
     }
 
-    // Fire the add a user function
+    // Check wether this is to update a user or add a new one
+    if (user.id !== undefined) {
+      props.editUser(user);
+    } else {
+      props.addNewUser(user);
+    }
+
     props.addNewUser(user);
+
+    // Close the form after
+    props.closeForm();
+
+    // Reset the form
+    resetForm();
   };
 
   // Function to handle some validation
@@ -58,7 +86,7 @@ export default function UserForm(props) {
         x
       </button>
 
-      <h3>Form Title</h3>
+      <h3>{user.id !== undefined ? "Edit User" : "Add User"}</h3>
 
       <form onSubmit={handleSubmission}>
         <input
@@ -68,6 +96,7 @@ export default function UserForm(props) {
           placeholder="Enter Name"
           className="form-field"
           onChange={handleChange}
+          value={user.name}
         />
 
         <input
@@ -77,6 +106,7 @@ export default function UserForm(props) {
           placeholder="Enter Email"
           className="form-field"
           onChange={handleChange}
+          value={user.email}
         />
 
         <select name="role" id="user-role" className="form-field" onChange={handleChange}>
@@ -87,7 +117,7 @@ export default function UserForm(props) {
           <option value="UX/UI Designer">UX/UI Designer</option>
         </select>
 
-        <input type="submit" value="Add User" className="button" />
+        <input type="submit" value={user.id !== undefined ? "Save User" : "Add User"} className="button" />
       </form>
     </div>
   );

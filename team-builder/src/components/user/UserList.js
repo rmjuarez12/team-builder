@@ -1,24 +1,33 @@
 import React from "react";
 
+// Import Components
+import User from "./User";
+
 export default function UserList(props) {
   const { users } = props;
 
   return (
     <div className="user-list">
       <div id="page-title">
-        <h1>Team Member List</h1>
-        <button onClick={() => props.openForm("add-new")}>Add New</button>
+        <h2>Team Member List</h2>
+        <button onClick={() => props.openForm()}>Add New</button>
       </div>
 
-      {users.map((user, index) => {
-        return (
-          <div className="user-card" key={index}>
-            <div className="name">{user.name}</div>
-            <div className="email">{user.email}</div>
-            <div className="role">{user.role}</div>
-          </div>
-        );
-      })}
+      <div className="user-row row-names">
+        <div className="id">Id</div>
+        <div className="name">Name</div>
+        <div className="email">Email</div>
+        <div className="role">Role</div>
+        <div className="date">Date Added</div>
+        <div className="buttons"></div>
+      </div>
+
+      {users.length > 0 &&
+        users.map((user, index) => {
+          return <User key={index} user={user} openForm={props.openForm} deleteUser={props.deleteUser} />;
+        })}
+
+      {users.length < 1 && <div className="no-results">No Users Found</div>}
     </div>
   );
 }

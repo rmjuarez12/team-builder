@@ -16,6 +16,9 @@ a {
 .App {
   display: flex;
   justify-content: center;
+  width: 80%;
+  padding: 20px;
+  margin: 0 auto;
 }
 
 #overlay {
@@ -26,6 +29,106 @@ a {
   width: 100vw;
   height: 100vh;
   z-index: 100;
+  opacity: 0;
+  display: none;
+}
+
+/* User List Styles */
+.no-results {
+  width: 100%;
+  text-align: center;
+  font-size: 25px;
+  text-transform: uppercase;
+  margin-top: 25px;
+}
+
+.user-list {
+  color: #dff9fb;
+  width: 100%;
+  display: block;
+}
+
+.user-row {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  border-bottom: #95afc0 1px dashed;
+  align-items: center;
+}
+
+.user-row.row-names {
+  background: #535c68 !important;
+  border: none !important;
+}
+
+.user-row.row-names div {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.user-row:nth-child(even) {
+  background: #30336b;
+}
+
+.user-row div {
+  width: 20%;
+}
+
+.user-row .date,
+.user-row .buttons {
+  width: 10% !important;
+}
+
+.user-row .buttons {
+  text-align: center;
+}
+
+.user-row .buttons button {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 3px;
+  cursor: pointer;
+  overflow: hidden;
+  background: none;
+  border: none;
+  color: #dff9fb;
+  font-size: 18pt;
+}
+
+.user-row .buttons button:hover {
+  background: #dff9fb;
+  color: black;
+}
+
+#page-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#page-title h2 {
+  font-size: 25px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+#page-title button {
+  width: 100%;
+  background: #6ab04c;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 200px;
+}
+
+#page-title button:hover {
+  background: #badc58;
 }
 
 /* User Form styles */
@@ -39,6 +142,7 @@ a {
   top: 10%;
   color: #30336b;
   z-index: 200;
+  transform: translateY(100vh);
 }
 
 #user-form h3 {
@@ -47,7 +151,6 @@ a {
   font-weight: bold;
   margin-bottom: 15px;
   padding-bottom: 5px;
-  border-bottom: #30336b 1px dashed;
 }
 
 #user-form p {
