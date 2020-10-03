@@ -5,9 +5,9 @@ export default function UserList(props) {
 
   return (
     <div>
-      {users.map((user) => {
+      {users.map((user, index) => {
         return (
-          <div className="user-card">
+          <div className="user-card" key={index}>
             <div className="name">{user.name}</div>
             <div className="email">{user.email}</div>
             <div className="role">{user.role}</div>
