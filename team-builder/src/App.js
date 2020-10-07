@@ -12,7 +12,7 @@ import "./assets/css/App.css";
 import { gsap } from "gsap";
 
 const dummyData = {
-  id: "124578",
+  id: 124578,
   name: "Richard Rodriguez",
   email: "richard@ilovereact.com",
   role: "Frontend Engineer",
@@ -25,6 +25,9 @@ function App() {
 
   // Set a state when we are editing a user
   const [memberToEdit, setMemberToEdit] = useState(null);
+
+  // Add a response message
+  const [response, setResponse] = useState(null);
 
   // Function to add a new user
   const addNewUser = (user) => {
@@ -39,23 +42,39 @@ function App() {
 
     // Set the new user
     setUsers([...users, newUser]);
+
+    // Set the response message
+    setResponse(`New User Added Successfully`);
   };
 
   // Function to edit user
   const editUser = (user) => {
     // Create an object for the new user to be inserted
-    const userToEdit = {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-      date: user.date,
-    };
+    const editedUserList = users.map((item) => {
+      // New user data
+      const userToEdit = {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        date: user.date,
+      };
+
+      if (item.id === user.id) {
+        return userToEdit;
+      } else {
+        return item;
+      }
+    });
 
     // Reset state for memberToEdit
     setMemberToEdit(null);
 
-    console.log(userToEdit);
+    // Set the new user list
+    setUsers(editedUserList);
+
+    // Set the response
+    setResponse(`User ${user.name} has been edited`);
   };
 
   // Function to delete user
@@ -63,14 +82,21 @@ function App() {
     // Remove user
     const userList = users.filter((item) => item.id !== user.id);
 
+    // Clear response first
+    setResponse(null);
+
     // Do a little animation
     const elm = event.target.closest(".user-row");
-    gsap.to(elm, { x: "-100vw", duration: 1 });
+    gsap.to(elm, { scale: 0.8, opacity: 0.5, duration: 0.3 });
+    gsap.to(elm, { x: "-100vw", duration: 1, delay: 0.3 });
 
     // Set the new list after animation finishes
     setTimeout(() => {
+      gsap.to(".user-row", { scale: 1, opacity: 1, x: 0, duration: 0 });
       setUsers(userList);
-    }, 1000);
+
+      setResponse(`User ${user.name} has been deleted`);
+    }, 1350);
   };
 
   // Function to bring in form
@@ -95,7 +121,7 @@ function App() {
 
   return (
     <div className="App">
-      <UserList users={users} openForm={openForm} deleteUser={deleteUser} />
+      <UserList users={users} openForm={openForm} deleteUser={deleteUser} response={response} />
 
       <UserForm
         addNewUser={addNewUser}

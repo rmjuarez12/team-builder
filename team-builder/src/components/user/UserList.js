@@ -13,6 +13,8 @@ export default function UserList(props) {
         <button onClick={() => props.openForm()}>Add New</button>
       </div>
 
+      {props.response !== null && <div className="response">{props.response}</div>}
+
       <div className="user-row row-names">
         <div className="id">Id</div>
         <div className="name">Name</div>

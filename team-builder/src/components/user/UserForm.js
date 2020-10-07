@@ -7,8 +7,6 @@ export default function UserForm(props) {
   // Setup state that will save the data entered in the fields
   const [user, setUser] = useState({ name: "", email: "", role: "0" });
 
-  console.log("user", user);
-
   // Set a useEffect so, if we are editing a user, it sets the user to that data
   useEffect(() => {
     if (props.memberToEdit !== null) {
@@ -48,8 +46,6 @@ export default function UserForm(props) {
     } else {
       props.addNewUser(user);
     }
-
-    props.addNewUser(user);
 
     // Close the form after
     props.closeForm();
@@ -109,7 +105,7 @@ export default function UserForm(props) {
           value={user.email}
         />
 
-        <select name="role" id="user-role" className="form-field" onChange={handleChange}>
+        <select name="role" id="user-role" className="form-field" onChange={handleChange} value={user.role}>
           <option value="0">Choose one</option>
           <option value="Project Manager">Project Manager</option>
           <option value="Backend Engineer">Backend Engineer</option>

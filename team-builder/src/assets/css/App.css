@@ -57,17 +57,13 @@ a {
 }
 
 .user-row.row-names {
-  background: #535c68 !important;
+  background: #30336b !important;
   border: none !important;
 }
 
 .user-row.row-names div {
   font-weight: bold;
   text-transform: uppercase;
-}
-
-.user-row:nth-child(even) {
-  background: #30336b;
 }
 
 .user-row div {
@@ -129,6 +125,15 @@ a {
 
 #page-title button:hover {
   background: #badc58;
+}
+
+.response {
+  background: #6ab04c;
+  margin: 0 auto 20px;
+  width: 350px;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
 }
 
 /* User Form styles */
